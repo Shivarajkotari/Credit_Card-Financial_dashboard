@@ -1,0 +1,20 @@
+﻿SET datestyle = 'ISO, DMY' ;
+
+COPY cc_detail
+FROM 'D:/cc_add.csv'
+DELIMITER ','
+CSV HEADER;
+
+SELECT * FROM cc_detail ;
+
+COPY cust_detail
+FROM 'D:/customer.csv'
+DELIMITER ','
+CSV HEADER;
+
+SELECT * FROM cust_detail ;
+
+DELETE FROM cust_detail a
+USING cust_detail b
+WHERE a.ctid < b.ctid
+ AND a.client_num = b.client_num;
